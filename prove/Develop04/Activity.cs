@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Threading.Tasks.Dataflow;
 
 class Activity
 {
@@ -7,19 +8,37 @@ class Activity
     private string _description;
     private int _duration;
 
-    protected string DisplayStartMessage(string startMessage)
+    public Activity(string name, string description)
     {
-        return startMessage;
+        _name = name;
+        _description = description;
     }
 
-    protected string DisplayEndMessage(string endMessage)
+    public void Start()
     {
-        return endMessage;
+        DisplayStartMessage();
+        DoActivity(_duration);
+        DisplayEndMessage();
+    }
+    public void DisplayStartMessage()
+    {
+        Console.WriteLine($"{_name} - Description: {_duration}");
+        GetDuration();
+        Console.WriteLine("Prepare to Start");
+        DoSpinner(3);
     }
 
-    public void GetDuration(string duration)
+    protected void DisplayEndMessage()
     {
-        _duration = int.Parse(duration);
+        Console.WriteLine($"Well done! You are finished with the {_name} activity!");
+        Console.WriteLine($"The activity lasted {_duration} seconds.");
+        DoSpinner(3);
+    }
+
+    public int GetDuration()
+    {
+        Console.WriteLine("How long (in seconds) would you like to do this for?");
+        return _duration = int.Parse(Console.ReadLine());
     }
 
     public void DoSpinner(int _duration)
