@@ -19,7 +19,7 @@ class Program
 
             if (choice == 1)
             {
-
+                new Breathing().Start();
             } else if (choice == 2)
             {
                 

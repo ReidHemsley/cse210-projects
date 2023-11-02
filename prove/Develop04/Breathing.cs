@@ -6,11 +6,13 @@ class Breathing : Activity
     {}
 
     
-    protected void DoActivity(int duration)
+    protected override void DoActivity()
     {
         Console.WriteLine("Follow the instuctions. We will begin in ");
         DoCountDown(5);
-        for (int i = 0; i < duration; i++)
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
+        while (DateTime.Now < endTime)
         {
             Console.WriteLine("Breath in...");
             DoCountDown(5);

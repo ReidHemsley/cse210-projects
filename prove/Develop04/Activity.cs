@@ -6,7 +6,7 @@ class Activity
 {
     private string _name;
     private string _description;
-    private int _duration;
+    protected int _duration;
 
     public Activity(string name, string description)
     {
@@ -14,15 +14,19 @@ class Activity
         _description = description;
     }
 
+    protected virtual void DoActivity()
+    {}
+
     public void Start()
     {
         DisplayStartMessage();
-        DoActivity(_duration);
+        DoActivity();
         DisplayEndMessage();
     }
+
     public void DisplayStartMessage()
     {
-        Console.WriteLine($"{_name} - Description: {_duration}");
+        Console.WriteLine($"{_name} - Description: {_description}");
         GetDuration();
         Console.WriteLine("Prepare to Start");
         DoSpinner(3);
