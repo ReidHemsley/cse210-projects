@@ -34,9 +34,11 @@ class Activity
 
     protected void DisplayEndMessage()
     {
+        Console.WriteLine();
         Console.WriteLine($"Well done! You are finished with the {_name} activity!");
         Console.WriteLine($"The activity lasted {_duration} seconds.");
         DoSpinner(3);
+        Console.WriteLine();
     }
 
     public int GetDuration()
