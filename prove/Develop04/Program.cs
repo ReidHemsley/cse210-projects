@@ -10,7 +10,7 @@ class Program
         {
             Console.WriteLine("Mindfulness Activities:");
             Console.WriteLine("1. Breathing");
-            Console.WriteLine("2. Reflection");
+            Console.WriteLine("2. Reflecting");
             Console.WriteLine("3. Listing");
             Console.WriteLine("4. Exit");
             Console.Write("Select an activity: ");
@@ -22,7 +22,7 @@ class Program
                 new Breathing().Start();
             } else if (choice == 2)
             {
-                //new Reflecting().Start();
+                new Reflecting().Start();
             } else if (choice == 3)
             {
                 new Listing().Start();
