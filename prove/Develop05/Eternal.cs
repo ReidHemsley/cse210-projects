@@ -1,7 +1,11 @@
 using System;
+using System.Text;
 
 class Eternal : Goal
 {
+
+    public Eternal(string name, int points, bool complete, int pointsEarned) : base(name, points, complete, pointsEarned)
+    {}
     public override void NewGoal()
     {
         Console.WriteLine("What is the name of the new goal? ");
@@ -15,7 +19,13 @@ class Eternal : Goal
 
     public override string GoalAsString()
     {
-        return $"{_goalType},{_nameDescription},{_pointValue}{_isComplete},{_bonusValue},{_compsNeeded},{_timesCompleted}";
+        return $"ETERNAL|{_nameDescription}|{_pointValue}|false|{_pointsEarned}";
+    }
+
+    public override void MarkComplete()
+    {
+        _completionBox = "[ ]";
+        _pointsEarned += _pointValue;
     }
 
 }

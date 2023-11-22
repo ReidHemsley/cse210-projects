@@ -6,15 +6,16 @@ class Checklist : Goal
     public int _compsNeeded;
     public int _timesCompleted;
 
-    public Checklist(string name, int points, int completionsNeeded, int bonusPoints) : base(name, points)
+    public Checklist(string name, int points, int bonusPoints, int completionsNeeded, int timesCompleted, bool complete, int pointsEarned) : base(name, points, complete, pointsEarned)
     {
         _bonusValue = bonusPoints;
+        _bonus = _bonusValue;
         _compsNeeded = completionsNeeded;
-        _timesCompleted = 0;
+        _timesCompleted = timesCompleted;
+        _completionBox = $"[{timesCompleted}/{completionsNeeded}]";
     }
     public override void NewGoal()
     {
-        _goalType = "CHECKLIST";
         Console.WriteLine("What is the name of the new goal? ");
         string name = Console.ReadLine();
         Console.WriteLine("Write a short description for the goal. ");
@@ -30,11 +31,27 @@ class Checklist : Goal
 
     public override string GoalAsString()
     {
-        return $"{_goalType},{_nameDescription},{_pointValue}{_isComplete},{_bonusValue},{_compsNeeded},{_timesCompleted}";
+        return $"CHECKLIST|{_nameDescription}|{_pointValue}|{_isComplete}|{_bonusValue}|{_compsNeeded}|{_timesCompleted}|{_pointsEarned}";
     }
 
     public override void MarkComplete()
     {
-        
+        if (!_isComplete)
+        {
+                _timesCompleted++;
+            if (_timesCompleted == _compsNeeded)
+            {
+                _isComplete = true;
+                _completionBox = $"[{_timesCompleted}/{_compsNeeded}]";
+                _pointsEarned += _pointValue;
+                _pointsEarned += _bonusValue;
+            }
+            else
+            {
+                _completionBox = $"[{_timesCompleted}/{_compsNeeded}]";
+                _pointsEarned += _pointValue;
+            }
+        }
     }
+
 }

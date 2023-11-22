@@ -8,12 +8,17 @@ abstract class Goal
     public string _nameDescription;
     public int _pointValue;
     public bool _isComplete;
-    private int _totalPoints = 0;
+    public string _completionBox;
+    public int _bonus;
+    public int _pointsEarned;
 
-    public Goal(string name, int points)
+    public Goal(string name, int points, bool isComplete, int pointsEarned)
     {
         _nameDescription = name;
         _pointValue = points;
+        _isComplete = isComplete;
+        _pointsEarned = pointsEarned;
+        _completionBox = "[ ]";
     }
 
     List<Goal> goals = new List<Goal>();
@@ -23,8 +28,10 @@ abstract class Goal
     public abstract void MarkComplete();
 
     public abstract string GoalAsString();
-    public void AddGoaltoList()
+
+    public void AddGoalToList(Goal goal)
     {
-        
+        goals.Add(goal);
     }
+
 }

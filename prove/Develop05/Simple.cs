@@ -3,6 +3,8 @@ using System.Security.Cryptography.X509Certificates;
 
 class Simple : Goal
 {
+    public Simple(string name, int points, bool complete, int pointsEarned) : base(name, points, complete, pointsEarned)
+    {}
     public override void NewGoal()
     {
         Console.WriteLine("What is the name of the new goal? ");
@@ -16,7 +18,14 @@ class Simple : Goal
 
     public override string GoalAsString()
     {
-        return $"{_goalType},{_nameDescription},{_pointValue}{_isComplete}";
+        return $"SIMPLE|{_nameDescription}|{_pointValue}|{_isComplete}|{_pointsEarned}";
+    }
+    
+        public override void MarkComplete()
+    {
+        _isComplete = true;
+        _completionBox = "[X]";
+        _pointsEarned += _pointValue;
     }
 
 }

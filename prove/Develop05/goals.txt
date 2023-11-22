@@ -1,0 +1,4 @@
+CHECKLIST|Dance - Get those legs shakin|10|False|50|5|1|10
+ETERNAL|Get Up - Wake up on time every morning|15|false|45
+SIMPLE|Say Hi to family - <-|25|False|0
+SIMPLE|Test - Just testing|80|False|0
