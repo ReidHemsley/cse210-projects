@@ -14,6 +14,8 @@ class Character
     private bool doProfAndLang;
     private bool doEquipAndFeat;
 
+    public string FinalPrompt;
+
     public string userInput = "";
 
     public void whatToGenerate()
@@ -172,5 +174,11 @@ class Character
         }
 
     }
+
+public string makePrompt(string classPrompt, string characteristicsPrompt, string statsPrompt, string inventoryPrompt, string profPrompt, string featsPrompt)
+{
+    FinalPrompt = "Make me a D&D character with these inputs." + classPrompt + characteristicsPrompt + statsPrompt + inventoryPrompt + profPrompt + featsPrompt;
+    return FinalPrompt;
+}
 
 }
