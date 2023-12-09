@@ -2,7 +2,7 @@
 
 using System;
 
-class Optionals : Character
+class Proficiencies : Character
 {
     
 }
