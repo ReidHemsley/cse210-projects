@@ -2,8 +2,12 @@ using System;
 
 class Save
 {
-    public void SavePrompt(string prompt)
+    public static void SavePrompt(string prompt, string filename)
     {
-        
+
+        using (StreamWriter writer = File.AppendText(filename))
+        {
+            writer.WriteLine(prompt);
+        }
     }
 }

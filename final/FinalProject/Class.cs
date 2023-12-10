@@ -1,28 +1,27 @@
 using System;
 
-class Class : Character
+class Class
 {
-    private string classPrompt;
-    private bool randomPrompt;
+    private string _classPrompt;
+    private string _userInput;
     public void getUserOrAi()
     {
-        Console.WriteLine("Write what class you would like your character to be OR leave blank and press ENTER if you want the class to be randomly generated.");
-        string userInput = Console.ReadLine();
+        Console.WriteLine("Write what class you would like your character to be OR leave blank and press ENTER if you want the class to be randomly generated. ");
+        _userInput = Console.ReadLine();
     }
 
-    public string setClassPrompt(string userInput)
+    public string setClassPrompt()
     {
-        if (userInput == "")
+        getUserOrAi();
+        if (_userInput == "")
         {
-            classPrompt = ", give them a random class";
-            randomPrompt = true;
+            _classPrompt = "Give the character a random class. ";
         }
         else
         {
-            classPrompt = userInput;
-            randomPrompt = false;
+            _classPrompt = $"The character should be a {_userInput} class. ";
         }
-        return classPrompt;
+        return _classPrompt;
     }
 
 }

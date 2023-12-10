@@ -5,68 +5,59 @@ using System.Dynamic;
 using System.Globalization;
 using System.Xml;
 
-class Characteristics : Character
+class Characteristics
 {
-    public string characteristicsPrompt;
-    private string race;
-    private string name;
-    private string backstory;
-    private bool charactaristic = true;
+    public string _characteristicsPrompt;
+    private string _race;
+    private string _name;
+    private string _backstory;
 
-    string[] characteristics = new string[3];
+    public string setCharPrompt(bool doName, bool doRace, bool doBackstory)
+    {
+        _characteristicsPrompt = "";
     
-    //characteristic names in list
-    private string[] characteristicNames = new string[] {"name", "race", "backstory"};
-
-
-    public void GetUserOrAi()
-    {
-        for (int i = 0; i < 3; i++)
+        if (doName)
         {
-            if (charactaristic == true)
+            Console.WriteLine("What do you want the characters name to be? Leave blank for a random name. ");
+            _name = Console.ReadLine();
+            if (_name == "")
             {
-                if (characteristicNames[i] == "name")
-                {
-                    Console.WriteLine("What do you want the characters name to be? Leave blank for for a random name.");
-                    name = Console.ReadLine();
-                    characteristics[0] = name;
-                }
-                else if (characteristicNames[i] == "race")
-                {
-                    Console.WriteLine("What do you want the characters race to be? Leave blank for for a random race.");
-                    race = Console.ReadLine();
-                    characteristics[1]= race;
-                }
-                else if (characteristicNames[i] == "backstory")
-                {
-                    Console.WriteLine("Write down a breif backstory for the character or, leave blank for a backstory to be randomly generated.");
-                    backstory = Console.ReadLine();
-                    characteristics[2] = backstory;
-                }
-            }
-        }
-    }
-    public string setCharPrompt()
-    {
-        characteristicsPrompt = "";
-        for (int i = 0; i < 8; i++)
-        {
-            if (characteristics[i] == "")
-            {
-                if (characteristicNames[i] == "backstory")
-                {
-                    characteristicsPrompt += $"Give the player breif backstory based on its characteristics.";
-                }
-                else
-                {
-                    characteristicsPrompt += $"Randomize the characters {characteristicNames[i]}";
-                }
+                _characteristicsPrompt += "Give the character a random first and last name. ";
             }
             else
             {
-                characteristicsPrompt += $"The {characteristicNames[i]} of the character should be {characteristics[i]}";
+                _characteristicsPrompt += "The name of the character is " + _name + ". ";
             }
         }
-        return characteristicsPrompt;
+        
+        if (doRace)
+        {
+            Console.WriteLine("What do you want the characters race to be? Leave blank for a random race. ");
+            _race = Console.ReadLine();
+            if (_race == "")
+            {
+                _characteristicsPrompt += "Make the character a random race. ";
+            }
+            else
+            {
+                _characteristicsPrompt += "The race of the character should be " + _race + ". ";
+            }
+        }
+        
+        if (doBackstory)
+        {
+            Console.WriteLine("Write a brief backstory, or leave blank for a random backstory. ");
+            _backstory = Console.ReadLine();
+            if (_backstory == "")
+            {
+                _characteristicsPrompt += "Generate a brief backstory for the character. ";
+            }
+            else
+            {
+                _characteristicsPrompt += "Here is a brief backstory for the character. " + _backstory + ". ";
+            }
+        }
+    
+        return _characteristicsPrompt;
     }
 }

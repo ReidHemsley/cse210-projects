@@ -1,184 +1,191 @@
 using System;
 using System.Reflection.Metadata;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 class Character
 {
     // Booleans used for whether or NOt to add specific details to the prompt.
-    private bool doName;
-    private bool doRace;
-    private bool doBackstory;
-    private bool doAlignment;
-    private bool doStats;
-    private bool doSkills;
-    private bool doInventory;
-    private bool doProfAndLang;
-    private bool doEquipAndFeat;
+    private bool _doName;
+    private bool _doRace;
+    private bool _doBackstory;
+    private bool _doStats;
+    private bool _doSkills;
+    private bool _doInventory;
+    private bool _doProfAndLang;
+    private bool _doEquipAndFeat;
 
-    public string FinalPrompt;
+    public string _finalPrompt;
 
-    public string userInput = "";
+    public string _userInput;
+
+    Class class1 = new Class();
+    Characteristics char1 = new Characteristics();
+    Stats stats1 = new Stats();
+    Skills skills1 = new Skills();
+    Proficiencies prof1 = new Proficiencies();
+    Inventory inv1 = new Inventory();
+    Feats feats1 = new Feats();
+    
 
     public void whatToGenerate()
     {
         // Checks if user wants a name to be included in prompt.
         Console.WriteLine("Would you like the prompt to include a name? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doName = true;
+            _doName = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doName = false;
+            _doName = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doName = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doName = true;
         }
 
         // Checks if user wants a race to be included in prompt.
         Console.WriteLine("Would you like the prompt to include a race? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doRace = true;
+            _doRace = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doRace = false;
+            _doRace = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doRace = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doRace = true;
         }
 
         // Checks if user wants a backstory to be included in prompt.
         Console.WriteLine("Would you like the prompt to include a backstory? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doBackstory = true;
+            _doBackstory = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doBackstory = false;
-        }
-        else
-        {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doBackstory = true;
-        }
-
-        // Checks if user wants an alignment to be included in prompt.
-        Console.WriteLine("Would you like the prompt to include an alignment? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
-        {
-            doAlignment = true;
-        }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
-        {
-            doAlignment = false;
+            _doBackstory = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doAlignment = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doBackstory = true;
         }
 
         // Checks if user wants stats to be included in prompt.
         Console.WriteLine("Would you like the prompt to include stats (hp, constatution, intelligenct, etc.)? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doStats = true;
+            _doStats = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doStats = false;
+            _doStats = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doStats = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doStats = true;
         }
 
         // Checks if user wants skills to be included in prompt.
-        Console.WriteLine("Would you like the prompt to include a skills? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        Console.WriteLine("Would you like the prompt to include skills? [Y/N]");
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doSkills = true;
+            _doSkills = true;
         }
-        else if (userInput.ToUpper().ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper().ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doSkills = false;
+            _doSkills = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doSkills = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doSkills = true;
         }
 
         // Checks if user wants an inventory to be included in prompt.
         Console.WriteLine("Would you like the prompt to include an inventory? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doInventory = true;
+            _doInventory = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doInventory = false;
+            _doInventory = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doInventory = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doInventory = true;
         }
 
         // Checks if user wants proficiencies and spoken languages to be included in prompt.
         Console.WriteLine("Would you like the prompt to include proficiencies and languages? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doProfAndLang = true;
+            _doProfAndLang = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doProfAndLang = false;
+            _doProfAndLang = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doProfAndLang = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doProfAndLang = true;
         }
 
         // Checks if user wants equiptment, feats and features to be included in prompt.
         Console.WriteLine("Would you like the prompt to include equipment, feats and features? [Y/N]");
-        userInput = Console.ReadLine();
-        if (userInput.ToUpper() == "Y" ^ userInput.ToUpper() == "YES")
+        _userInput = Console.ReadLine();
+        if (_userInput.ToUpper() == "Y" ^ _userInput.ToUpper() == "YES")
         {
-            doEquipAndFeat = true;
+            _doEquipAndFeat = true;
         }
-        else if (userInput.ToUpper() == "N" ^ userInput.ToUpper() == "NO")
+        else if (_userInput.ToUpper() == "N" ^ _userInput.ToUpper() == "NO")
         {
-            doEquipAndFeat = false;
+            _doEquipAndFeat = false;
         }
         else
         {
-            Console.WriteLine("Invalid response. Defaulted to YES.");
-            doEquipAndFeat = true;
+            Console.WriteLine("Invalid response. Defaulted to YES. ");
+            _doEquipAndFeat = true;
         }
-
+        Console.Clear();
     }
 
-public string makePrompt(string classPrompt, string characteristicsPrompt, string statsPrompt, string inventoryPrompt, string profPrompt, string featsPrompt)
-{
-    FinalPrompt = "Make me a D&D character with these inputs." + classPrompt + characteristicsPrompt + statsPrompt + inventoryPrompt + profPrompt + featsPrompt;
-    return FinalPrompt;
-}
+
+    public string getPrompts()
+    {
+        _finalPrompt = "Make me a D&D character with these inputs. ";
+        _finalPrompt += class1.setClassPrompt();
+        _finalPrompt += char1.setCharPrompt(_doName, _doRace, _doBackstory);
+        _finalPrompt += stats1.setStatsPrompt(_doStats);
+        _finalPrompt += skills1.setSkillsPrompt(_doSkills);
+        _finalPrompt += prof1.setProfPrompt(_doProfAndLang);
+        _finalPrompt += inv1.setInvPrompt(_doInventory);
+        _finalPrompt += feats1.setFeatsPrompt(_doEquipAndFeat);
+        Console.WriteLine($"Here is your final prompt.\n \n{_finalPrompt}\n");
+        return _finalPrompt;
+    }
+
+    public string getFinalPrompt()
+    {
+        return _finalPrompt;
+    }
 
 }
